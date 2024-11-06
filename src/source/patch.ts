@@ -225,7 +225,8 @@ function invokePrototypeMethod(
         }
       }
       return globalEnv.rawAppendChild.call(hijackParent, targetNode)
-    } else if (rawMethod === globalEnv.rawRemoveChild && !hijackParent.contains(targetNode)) {
+    // } else if (rawMethod === globalEnv.rawRemoveChild && !hijackParent.contains(targetNode)) {
+    } else if (rawMethod === globalEnv.rawRemoveChild && !Array.from(hijackParent.childNodes).some(node => node === targetNode)) {
       if (parent.contains(targetNode)) {
         return rawMethod.call(parent, targetNode)
       }
